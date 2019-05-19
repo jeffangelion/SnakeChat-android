@@ -9,4 +9,5 @@
     <string name="nameStub">Nickname :</string>
     <string name="msgStub">message</string>
     <string name="https_connection">HTTPS connection</string>
+    <string name="port">3000</string>
 </resources>

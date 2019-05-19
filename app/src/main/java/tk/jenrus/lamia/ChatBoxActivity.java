@@ -55,7 +55,7 @@ public class ChatBoxActivity extends AppCompatActivity {
 //            protocol = "https://";
 //        }
         try {
-            socket = IO.socket(protocol + address +":3000");
+            socket = IO.socket(protocol + address + R.string.port);
             socket.connect();
             socket.emit("join", nickname);
         } catch (URISyntaxException e) {

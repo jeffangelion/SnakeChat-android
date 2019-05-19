@@ -50,6 +50,7 @@ public class ChatBoxActivity extends AppCompatActivity {
         String address = getIntent().getExtras().getString(MainActivity.ADDRESS);
         boolean secured = getIntent().getExtras().getBoolean(MainActivity.SECURED);
         String protocol = "http://";
+        //TODO: Реализовать работу через HTTPS
 //        if (secured) {
 //            protocol = "https://";
 //        }
@@ -112,6 +113,7 @@ public class ChatBoxActivity extends AppCompatActivity {
                     public void run() {
                         JSONObject data = (JSONObject) args[0];
                         try {
+                            //TODO: Вывод системных ссобщений вместе с обычными
                             //Извлечение данных из JSON
                             String nickname = data.getString("username");
                             String message = data.getString("message");

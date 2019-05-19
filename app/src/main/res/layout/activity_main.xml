@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/nickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/enterNick"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/chatRoomAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/enterchat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/goToChat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secured" />
+
+    <EditText
+        android:id="@+id/chatRoomAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enterAddress"
+        android:inputType="textPersonName"
+        android:text="@string/debugAddress"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/secured"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+    <Switch
+        android:id="@+id/secured"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/https_connection"
+        app:layout_constraintBottom_toTopOf="@+id/enterchat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatRoomAddress" />
+</android.support.constraint.ConstraintLayout>

@@ -21,10 +21,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatBoxActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
     public RecyclerView myRecyclerView;
     public List<Message> messageList;
-    public ChatBoxAdapter chatBoxAdapter;
+    public MessageAdapter messageAdapter;
     private EditText messageText;
     private Socket socket;
     private String nickname;
@@ -42,20 +42,20 @@ public class ChatBoxActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_box);
+        setContentView(R.layout.activity_chat);
         messageText = findViewById(R.id.message);
         ImageButton send = findViewById(R.id.send);
         //Подключение к серверу
         setNickname(getIntent().getExtras().getString(MainActivity.NICKNAME));
         String address = getIntent().getExtras().getString(MainActivity.ADDRESS);
-        boolean secured = getIntent().getExtras().getBoolean(MainActivity.SECURED);
-        String protocol = "http://";
         //TODO: Реализовать работу через HTTPS
+//        boolean secured = getIntent().getExtras().getBoolean(MainActivity.SECURED);
+        String protocol = "http://";
 //        if (secured) {
 //            protocol = "https://";
 //        }
         try {
-            socket = IO.socket(protocol + address + R.string.port);
+            socket = IO.socket(protocol + address + ":3000");
             socket.connect();
             socket.emit("join", nickname);
         } catch (URISyntaxException e) {
@@ -86,7 +86,7 @@ public class ChatBoxActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String data = (String) args[0];
-                        Toast.makeText(ChatBoxActivity.this,data+" has joined the chat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatActivity.this,data+" has joined the chat", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -99,7 +99,7 @@ public class ChatBoxActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String data = (String) args[0];
-                        Toast.makeText(ChatBoxActivity.this,data+" has left the chat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatActivity.this,data+" has left the chat", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -117,28 +117,24 @@ public class ChatBoxActivity extends AppCompatActivity {
                             //Извлечение данных из JSON
                             String nickname = data.getString("username");
                             String message = data.getString("message");
-//                            boolean system = data.getBoolean("system");
 
                             //Создаём сообщение
                             Message m = new Message(nickname,message);
-//                            if (system) {
-//                                bubble = R.layout.message_system;
-//                            }
                             if (m.getNickname().equals(getNickname())) {
                                 bubble = R.layout.message_sent;
                             }
                             //Добавляем сообщение в messageList (список сообщений)
                             messageList.add(m);
 
-                            //Подключение messageList к chatBoxAdapter
-                            chatBoxAdapter = new ChatBoxAdapter(messageList, bubble);
+                            //Подключение messageList к messageAdapter
+                            messageAdapter = new MessageAdapter(messageList, bubble);
 
-                            //Обновление chatBoxAdapter и прокрутка к последнему сообщению
-                            chatBoxAdapter.notifyDataSetChanged();
+                            //Обновление messageAdapter и прокрутка к последнему сообщению
+                            messageAdapter.notifyDataSetChanged();
                             myRecyclerView.scrollToPosition(messageList.size()-1);
 
-                            //Подключение chatBoxAdapter к RecyclerView
-                            myRecyclerView.setAdapter(chatBoxAdapter);
+                            //Подключение messageAdapter к RecyclerView
+                            myRecyclerView.setAdapter(messageAdapter);
 
                             //Восстановление фона сообщения по умолчанию
                             bubble = R.layout.message_received;

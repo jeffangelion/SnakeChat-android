@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn = findViewById(R.id.enterchat);
+        Button btn = findViewById(R.id.btnConnect);
         nickname = findViewById(R.id.nickname);
         address = findViewById(R.id.chatRoomAddress);
         secured = findViewById(R.id.secured);
@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if((!nickname.getText().toString().isEmpty())&&(!address.getText().toString().isEmpty())){
-                    Intent start  = new Intent(MainActivity.this, ChatBoxActivity.class);
+                    Intent start  = new Intent(MainActivity.this, ChatActivity.class);
                     start.putExtra(NICKNAME,nickname.getText().toString());
                     start.putExtra(ADDRESS,address.getText().toString());
-                    start.putExtra(SECURED,secured.isChecked());
+//                    start.putExtra(SECURED,secured.isChecked());
                     startActivity(start);
                 }
             }

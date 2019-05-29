@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">SnakeChat</string>
     <string name="enterAddress">Address</string>
-    <string name="goToChat">Go to chat</string>
-    <string name="enterNick">Nickname</string>
-    <string name="your_message">your message</string>
+    <string name="start">Let\'s chat!</string>
+    <string name="enterNickname">Nickname</string>
+    <string name="yourMessage">Your message</string>
     <string name="send">send</string>
-    <string name="debugAddress">35.238.174.134</string>
     <string name="nameStub">Nickname :</string>
     <string name="msgStub">message</string>
-    <string name="https_connection">HTTPS connection</string>
-    <string name="port">3000</string>
+    <string name="secureConnect">HTTPS connection</string>
+    <string name="port">:3000</string>
 </resources>

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.MyViewHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
     private List<Message> MessageList;
     private int bubble;
 
@@ -22,7 +22,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.MyViewHo
             message =  view.findViewById(R.id.message);
         }
     }
-    ChatBoxAdapter(List<Message> MessageList, int bubble) {
+    MessageAdapter(List<Message> MessageList, int bubble) {
         this.MessageList = MessageList;
         this.bubble = bubble;
     }
@@ -32,14 +32,14 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.MyViewHo
         return MessageList.size();
     }
     @Override
-    public ChatBoxAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MessageAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(bubble, parent, false);
-        return new ChatBoxAdapter.MyViewHolder(itemView);
+                .inflate(R.layout.message_received, parent, false);
+        return new MessageAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final ChatBoxAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MessageAdapter.MyViewHolder holder, final int position) {
         final Message m = MessageList.get(position);
         holder.nickname.setText(m.getNickname());
         holder.message.setText(m.getMessage());
